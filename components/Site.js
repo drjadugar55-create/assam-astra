@@ -1,0 +1,6 @@
+"use client";
+import Link from "next/link";
+import {createContext,useContext,useState} from "react";
+const C=createContext(null);
+export const useLang=()=>useContext(C);
+export default function Site({children}){const[lang,setLang]=useState("en");const en=lang==="en";const links=en?[["Home","/"],["ADRE Grade III","/adre-grade-iii"],["Mock Tests","/mock-tests"],["PYQs","/pyqs"],["Current Affairs","/current-affairs"],["Dashboard","/dashboard"]]:[["মুখ্য পৃষ্ঠা","/"],["ADRE তৃতীয় শ্ৰেণী","/adre-grade-iii"],["মক টেষ্ট","/mock-tests"],["পূৰ্বৰ প্ৰশ্ন","/pyqs"],["সাম্প্ৰতিক পৰিঘটনা","/current-affairs"],["ডেশ্বব'ৰ্ড","/dashboard"]];return <C.Provider value={{lang}}><header className="header"><Link href="/" className="brand"><b>A</b><span>ASSAM <i>ASTRA</i><small>LEARN · PRACTICE · SUCCEED</small></span></Link><nav>{links.map(([n,u])=><Link href={u} key={u}>{n}</Link>)}</nav><div className="actions"><button onClick={()=>setLang(en?"as":"en")}>{en?"অসমীয়া":"English"}</button><Link href="/login">{en?"Login":"লগইন"}</Link></div></header><main className="wrap">{children}</main><footer className="footer">© {new Date().getFullYear()} ASSAM ASTRA · {en?"An independent learning platform for Assam exam aspirants.":"অসমৰ পৰীক্ষাৰ্থীৰ বাবে এক স্বতন্ত্ৰ শিক্ষণ মঞ্চ।"}</footer></C.Provider>}
