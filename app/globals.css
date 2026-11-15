@@ -2,3 +2,65 @@
 :root{--bg:#081321;--panel:#112237;--text:#f4f7fb;--muted:#9aabc0;--line:#293b50;--gold:#f3ad45}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}a{color:inherit;text-decoration:none}button,select,input{font:inherit}.header{position:sticky;top:0;z-index:5;background:#081321ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:14px max(calc((100vw - 1120px)/2),22px);display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:1px}.brand>b{background:linear-gradient(140deg,#ffd18a,#e68b2d);color:#172235;border-radius:10px;padding:9px 13px;font:800 22px Manrope}.brand i{color:var(--gold);font-style:normal}.brand small{display:block;font-size:7px;color:#91a4b8;letter-spacing:1px;margin-top:3px}.header nav{display:flex;gap:16px;flex-wrap:wrap}.header nav a,.actions a,.actions button{font-size:10px;font-weight:700;color:#c5d2df}.actions{display:flex;gap:8px;align-items:center}.actions button,.actions a{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:transparent;color:white}.actions a{background:var(--gold);color:#172235}.wrap{max-width:1120px;margin:auto;padding:35px 24px 60px;min-height:76vh}.hero{position:relative;overflow:hidden;min-height:370px;border:1px solid #31516a;border-radius:22px;padding:55px;background:radial-gradient(ellipse at 80% 40%,#284b60,transparent 38%),linear-gradient(110deg,#112b42,#172e43)}.hero small,.pagetitle small{color:#a9c5d3;font-size:9px;font-weight:800;letter-spacing:1.6px}.hero h1{font:800 clamp(36px,5vw,56px)/1.12 Manrope;letter-spacing:-2px;margin:20px 0}.hero em{color:#ffd28a;font-style:normal}.hero p,.pagetitle p{max-width:570px;color:#b5c5d4;font-size:12px;line-height:1.8}.btn{display:inline-block;border:0;border-radius:9px;background:var(--gold);color:#192538;padding:12px 17px;font-size:11px;font-weight:800;cursor:pointer;margin-top:13px}.art{position:absolute;right:11%;top:22%;width:155px;height:205px;border-radius:9px 16px 16px 9px;border-left:9px solid #9b5d2e;background:linear-gradient(145deg,#f4c27b,#c67c38);box-shadow:15px 20px 35px #0007;display:grid;place-content:center;text-align:center;color:#293344;font:800 25px/1.4 Manrope;transform:rotate(-8deg)}.art span{font-size:14px}.notice{margin:22px 0;padding:17px 20px;border:1px solid #31516a;border-radius:12px;background:#142b40;color:#c5d4e0;font-size:11px;line-height:1.7}.notice p{margin:6px 0 0;color:var(--muted)}.warn{background:#352b1d;border-color:#6e5128}.wrap>h2{font:800 24px Manrope;margin:38px 0 18px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.card{padding:20px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,#132338,#0f1c2c);margin-bottom:12px}.card h3{font:800 14px Manrope;margin:12px 0 7px}.card p{font-size:11px;line-height:1.7;color:var(--muted)}.card strong,.card a,.linkbtn{color:#ffd28a;font-size:10px}.ic{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#263a50;color:#ffd28a;font-size:20px}.disclaimer,.muted{font-size:9px;color:#8598ad;margin-top:20px}.pagetitle{padding:15px 0 25px}.pagetitle h1{font:800 clamp(30px,4vw,42px) Manrope;margin:9px 0}.pagetitle p{color:var(--muted)}.links{display:grid;gap:10px;margin-top:25px}.links a{padding:15px;border:1px solid var(--line);background:var(--panel);border-radius:10px;color:#ffd28a;font-size:11px}.quiz{max-width:720px;margin:25px auto}.quiz h3{line-height:1.6}.option{display:block;width:100%;text-align:left;padding:12px;margin:8px 0;background:#0b1928;color:white;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:11px}.option.chosen{border-color:var(--gold);background:#f3ad4518}.row{display:flex;justify-content:space-between;margin-top:18px}.row button:not(.btn){padding:10px;background:transparent;color:white;border:1px solid var(--line);border-radius:8px}.filter{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px;margin:20px 0}.filter select{background:#14263a;color:white;border:1px solid var(--line);padding:9px;border-radius:8px}.question{max-width:850px}.linkbtn{border:0;background:none;cursor:pointer;padding:8px 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stats div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;font-size:24px;font-weight:800}.stats small{display:block;color:var(--muted);font-size:9px;margin-top:8px}.login{max-width:420px;margin:20px auto}.login input{display:block;width:100%;padding:12px;margin:12px 0;background:#0b1928;border:1px solid var(--line);border-radius:8px;color:white}.login button:disabled{opacity:.5;cursor:not-allowed}.footer{border-top:1px solid var(--line);padding:24px;text-align:center;color:#8395aa;font-size:10px}
 @media(max-width:850px){.header{flex-wrap:wrap;padding:12px 18px}.header nav{order:3;width:100%;justify-content:center}.art{right:7%;transform:scale(.8) rotate(-8deg)}}
 @media(max-width:620px){.header{gap:10px}.header nav{gap:10px}.header nav a{font-size:9px}.wrap{padding:22px 15px 45px}.hero{padding:32px 22px 205px;min-height:480px}.hero h1{font-size:38px}.art{top:auto;bottom:5px;right:50%;transform:translateX(50%) scale(.72) rotate(-8deg)}.grid{grid-template-columns:1fr}.card{padding:16px}.stats{gap:7px}.stats div{padding:12px;font-size:20px}.actions button,.actions a{padding:8px;font-size:9px}}
+
+/* ASSAM ASTRA authentication */
+.auth-card {
+  max-width: 460px;
+  margin: 35px auto;
+  padding: 30px;
+}
+
+.auth-card h2 {
+  margin: 16px 0 8px;
+  font-size: 23px;
+}
+
+.auth-card form {
+  margin-top: 20px;
+}
+
+.auth-card input {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin: 12px 0;
+  background: #0b1928;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: white;
+}
+
+.auth-card input:focus {
+  outline: 2px solid var(--gold);
+  border-color: var(--gold);
+}
+
+.auth-submit {
+  width: 100%;
+}
+
+.auth-error {
+  color: #ff8585 !important;
+  font-size: 12px !important;
+}
+
+.auth-success {
+  color: #80dba0 !important;
+  font-size: 12px !important;
+}
+
+.auth-switch {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.auth-switch a {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+@media(max-width: 620px) {
+  .auth-card {
+    padding: 20px;
+  }
+}
