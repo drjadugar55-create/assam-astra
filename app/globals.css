@@ -64,3 +64,96 @@
     padding: 20px;
   }
 }
+
+/* Student account dropdown */
+
+.account-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.account-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.account-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #101b2b;
+  font-weight: 800;
+}
+
+.account-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 1000;
+  width: 230px;
+  padding: 10px;
+  background: #101e30;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+
+.account-info small {
+  color: #aab7c8;
+  font-size: 11px;
+}
+
+.account-dropdown a,
+.account-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 11px 10px;
+  text-align: left;
+  color: #f3f5f8;
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.account-dropdown a:hover,
+.account-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 620px) {
+  .account-name {
+    max-width: 75px;
+  }
+
+  .account-dropdown {
+    right: 0;
+  }
+}
