@@ -2,7 +2,13 @@
 "use client";
 
 import Link from "next/link";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -15,10 +21,13 @@ export default function Site({ children }) {
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [supabase] = useState(() => createClient());
+
+  const accountRef = useRef(null);
   const router = useRouter();
 
   const en = lang === "en";
 
+  // Load and monitor the student login session
   useEffect(() => {
     let mounted = true;
 
@@ -45,6 +54,34 @@ export default function Site({ children }) {
       subscription.unsubscribe();
     };
   }, [supabase]);
+
+  // Close account dropdown when clicking outside or pressing Escape
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    function handleOutsideClick(event) {
+      if (
+        accountRef.current &&
+        !accountRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false);
+      }
+    }
+
+    function handleEscape(event) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [menuOpen]);
 
   const links = en
     ? [
@@ -112,18 +149,21 @@ export default function Site({ children }) {
               {en ? "Login" : "লগইন"}
             </Link>
           ) : (
-            <div className="account-wrap">
+            <div className="account-wrap" ref={accountRef}>
               <button
                 className="account-trigger"
-                onClick={() => setMenuOpen(!menuOpen)}
+                onClick={() => setMenuOpen((open) => !open)}
                 aria-expanded={menuOpen}
+                aria-haspopup="true"
               >
                 <span className="account-avatar">
                   {studentName.charAt(0).toUpperCase()}
                 </span>
+
                 <span className="account-name">
                   {studentName}
                 </span>
+
                 <span>⌄</span>
               </button>
 
