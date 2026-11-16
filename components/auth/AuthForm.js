@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -13,6 +14,7 @@ export default function AuthForm({ mode }) {
   const isRegister = mode === "register";
 
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,6 +27,18 @@ export default function AuthForm({ mode }) {
     setMessage("");
     setError("");
 
+    const cleanUsername = username.trim().toLowerCase();
+
+    if (isRegister && !/^[a-z0-9_]{3,20}$/.test(cleanUsername)) {
+      setError(
+        en
+          ? "Username must be 3–20 characters and contain only lowercase letters, numbers and underscores."
+          : "ব্যৱহাৰকাৰীৰ নাম ৩–২০টা আখৰৰ হ'ব লাগিব আৰু সৰু আখৰ, সংখ্যা বা আণ্ডাৰস্কোৰ ব্যৱহাৰ কৰিব পাৰিব।"
+      );
+      setLoading(false);
+      return;
+    }
+
     try {
       const supabase = createClient();
 
@@ -33,7 +47,10 @@ export default function AuthForm({ mode }) {
           email: email.trim(),
           password,
           options: {
-            data: { full_name: name.trim() },
+            data: {
+              full_name: name.trim(),
+              username: cleanUsername,
+            },
             emailRedirectTo: `${window.location.origin}/dashboard`,
           },
         });
@@ -88,15 +105,37 @@ export default function AuthForm({ mode }) {
 
       <form onSubmit={handleSubmit}>
         {isRegister && (
-          <input
-            type="text"
-            placeholder={en ? "Full name" : "সম্পূৰ্ণ নাম"}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            autoComplete="name"
-            required
-            maxLength={100}
-          />
+          <>
+            <input
+              type="text"
+              placeholder={en ? "Full name" : "সম্পূৰ্ণ নাম"}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              autoComplete="name"
+              required
+              maxLength={100}
+            />
+
+            <input
+              type="text"
+              placeholder={en ? "Choose username (e.g. assam_learner27)" : "ব্যৱহাৰকাৰীৰ নাম বাছনি কৰক"}
+              value={username}
+              onChange={(e) =>
+                setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))
+              }
+              autoComplete="username"
+              minLength={3}
+              maxLength={20}
+              required
+              spellCheck={false}
+            />
+
+            <small className="muted">
+              {en
+                ? "3–20 characters. Lowercase letters, numbers and underscores only."
+                : "৩–২০টা আখৰ। সৰু আখৰ, সংখ্যা আৰু আণ্ডাৰস্কোৰহে ব্যৱহাৰ কৰক।"}
+            </small>
+          </>
         )}
 
         <input
