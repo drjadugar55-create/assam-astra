@@ -1,2 +1,100 @@
-"use client";import Link from "next/link";import {useLang} from "@/components/Site";
-export default function Home(){const{lang}=useLang(),e=lang==="en";const cards=e?[["▤","Previous Year Questions","Practise questions by subject and topic.","/pyqs"],["◷","Mock Tests","Build speed with timed practice.","/mock-tests"],["✦","ADRE Grade III","Explore exam information and preparation areas.","/adre-grade-iii"],["◉","Current Affairs","Strengthen general awareness.","/current-affairs"]]:[["▤","পূৰ্বৰ বছৰৰ প্ৰশ্ন","বিষয় আৰু অধ্যায় অনুসৰি প্ৰশ্ন অনুশীলন কৰক।","/pyqs"],["◷","মক টেষ্ট","অনুশীলনৰ জৰিয়তে গতি বৃদ্ধি কৰক।","/mock-tests"],["✦","ADRE তৃতীয় শ্ৰেণী","পৰীক্ষাৰ তথ্য আৰু প্ৰস্তুতি চাওক।","/adre-grade-iii"],["◉","সাম্প্ৰতিক পৰিঘটনা","সাধাৰণ জ্ঞান বৃদ্ধি কৰক।","/current-affairs"]];return <><section className="hero"><small>{e?"YOUR ASSAM EXAM PREPARATION STARTS HERE":"আপোনাৰ পৰীক্ষাৰ প্ৰস্তুতি ইয়াৰ পৰাই আৰম্ভ"}</small><h1>{e?<>Prepare smarter.<br/><em>Achieve greater.</em></>:<>স্মাৰ্টভাৱে প্ৰস্তুতি লওক।<br/><em>সফলতা অৰ্জন কৰক।</em></>}</h1><p>{e?"A focused learning platform for Assam government exam preparation. Practise mock tests, explore questions and stay updated.":"অসম চৰকাৰী পৰীক্ষাৰ প্ৰস্তুতিৰ বাবে শিক্ষণ মঞ্চ। মক টেষ্ট দিয়ক, প্ৰশ্ন অনুশীলন কৰক আৰু শেহতীয়া খবৰ জানক।"}</p><Link className="btn" href="/adre-grade-iii">{e?"Explore ADRE Grade III →":"ADRE তৃতীয় শ্ৰেণী চাওক →"}</Link><div className="art">A<br/><span>ASTRA</span></div></section><section className="notice"><b>{e?"FIRST EXAMINATION":"প্ৰথম পৰীক্ষা"} · ADRE GRADE III</b><p>{e?"Your first examination hub is ready to explore. More exams can be added later.":"আপোনাৰ প্ৰথম পৰীক্ষাৰ শাখা সাজু। পিছত অধিক পৰীক্ষা যোগ কৰিব পাৰি।"}</p></section><h2>{e?"Explore learning resources":"শিক্ষণৰ সমলসমূহ"}</h2><div className="grid">{cards.map(([ic,t,d,u])=><Link className="card" href={u} key={u}><b className="ic">{ic}</b><h3>{t}</h3><p>{d}</p><strong>{e?"Explore section →":"শাখাটো চাওক →"}</strong></Link>)}</div><p className="disclaimer">{e?"Preview frontend. Sample content only; verify official recruitment details before publication.":"পূৰ্বদৰ্শন ফ্ৰণ্টএণ্ড। চৰকাৰী নিযুক্তিৰ তথ্য প্ৰকাশৰ আগতে পৰীক্ষা কৰক।"}</p></>}
+
+"use client";
+
+import Link from "next/link";
+import { useLang } from "@/components/Site";
+
+export default function Home() {
+  const { lang } = useLang();
+  const e = lang === "en";
+
+  const cards = e
+    ? [
+        ["▤", "Previous Year Questions", "Practise questions by subject and topic.", "/pyqs"],
+        ["◷", "Mock Tests", "Build speed with timed practice.", "/mock-tests"],
+        ["✦", "ADRE Grade III", "Explore exam information and preparation areas.", "/adre-grade-iii"],
+        ["◉", "Current Affairs", "Strengthen general awareness.", "/current-affairs"],
+      ]
+    : [
+        ["▤", "পূৰ্বৰ বছৰৰ প্ৰশ্ন", "বিষয় আৰু অধ্যায় অনুসৰি প্ৰশ্ন অনুশীলন কৰক।", "/pyqs"],
+        ["◷", "মক টেষ্ট", "অনুশীলনৰ জৰিয়তে গতি বৃদ্ধি কৰক।", "/mock-tests"],
+        ["✦", "ADRE তৃতীয় শ্ৰেণী", "পৰীক্ষাৰ তথ্য আৰু প্ৰস্তুতি চাওক।", "/adre-grade-iii"],
+        ["◉", "সাম্প্ৰতিক পৰিঘটনা", "সাধাৰণ জ্ঞান বৃদ্ধি কৰক।", "/current-affairs"],
+      ];
+
+  return (
+    <>
+      <section className="hero">
+        <small>
+          {e
+            ? "YOUR ASSAM EXAM PREPARATION STARTS HERE"
+            : "আপোনাৰ পৰীক্ষাৰ প্ৰস্তুতি ইয়াৰ পৰাই আৰম্ভ"}
+        </small>
+
+        <h1>
+          {e ? (
+            <>
+              Your Goal.
+              <br />
+              <em>Our Guidance.</em>
+            </>
+          ) : (
+            <>
+              আপোনাৰ লক্ষ্য।
+              <br />
+              <em>আমাৰ পথপ্ৰদৰ্শন</em>
+            </>
+          )}
+        </h1>
+
+        <p>
+          A focused learning platform for Assam government exam preparation.
+          Practise mock tests, explore questions and stay updated.
+        </p>
+
+        <Link className="btn" href="/adre-grade-iii">
+          {e ? "Explore ADRE Grade III →" : "ADRE তৃতীয় শ্ৰেণী চাওক →"}
+        </Link>
+
+        <div className="art">
+          A
+          <br />
+          <span>ASTRA</span>
+        </div>
+      </section>
+
+      <section className="notice">
+        <b>
+          {e ? "FIRST EXAMINATION" : "প্ৰথম পৰীক্ষা"} · ADRE GRADE III
+        </b>
+
+        <p>
+          {e
+            ? "Your first examination hub is ready to explore. More exams can be added later."
+            : "আপোনাৰ প্ৰথম পৰীক্ষাৰ শাখা সাজু। পিছত অধিক পৰীক্ষা যোগ কৰিব পাৰি।"}
+        </p>
+      </section>
+
+      <h2>{e ? "Explore learning resources" : "শিক্ষণৰ সমলসমূহ"}</h2>
+
+      <div className="grid resource-scroll">
+        {cards.map(([ic, t, d, u]) => (
+          <Link className="card" href={u} key={u}>
+            <b className="ic">{ic}</b>
+            <h3>{t}</h3>
+            <p>{d}</p>
+            <strong>
+              {e ? "Explore section →" : "শাখাটো চাওক →"}
+            </strong>
+          </Link>
+        ))}
+      </div>
+
+      <p className="disclaimer">
+        {e
+          ? "Preview frontend. Sample content only; verify official recruitment details before publication."
+          : "পূৰ্বদৰ্শন ফ্ৰণ্টএণ্ড। চৰকাৰী নিযুক্তিৰ তথ্য প্ৰকাশৰ আগতে পৰীক্ষা কৰক।"}
+      </p>
+    </>
+  );
+}

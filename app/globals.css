@@ -157,3 +157,242 @@
     right: 0;
   }
 }
+
+/* ASSAM ASTRA — responsive improvements */
+@media (max-width: 850px) {
+  .header {
+    gap: 12px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .wrap {
+    width: 100%;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .header {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .brand {
+    gap: 7px;
+  }
+
+  .brand > b {
+    padding: 7px 10px;
+    font-size: 19px;
+  }
+
+  .header nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 5px 0;
+    scrollbar-width: none;
+  }
+
+  .header nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header nav a {
+    white-space: nowrap;
+    font-size: 10px;
+    padding: 7px 2px;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .actions button,
+  .actions a {
+    min-height: 38px;
+    padding: 8px 10px;
+  }
+
+  .wrap {
+    padding: 18px 12px 35px;
+  }
+
+  .hero {
+    border-radius: 16px;
+    padding: 28px 18px 195px;
+    min-height: 455px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 9vw, 38px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero p {
+    font-size: 12px;
+  }
+
+  .art {
+    bottom: -12px;
+    transform: translateX(50%) scale(0.65) rotate(-8deg);
+  }
+
+  .wrap > h2 {
+    font-size: 21px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    margin-bottom: 0;
+  }
+
+  .notice {
+    padding: 14px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stats div {
+    font-size: 18px;
+  }
+
+  .filter {
+    flex-wrap: wrap;
+  }
+
+  .filter select {
+    max-width: 100%;
+  }
+
+  .quiz,
+  .question {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .option {
+    padding: 12px 10px;
+    line-height: 1.5;
+  }
+
+  .row {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .auth-card {
+    margin: 15px auto;
+    padding: 18px;
+  }
+
+  .account-dropdown {
+    max-width: calc(100vw - 24px);
+  }
+
+  .footer {
+    padding: 20px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  .brand small {
+    font-size: 6px;
+  }
+
+  .actions button,
+  .actions a {
+    font-size: 9px;
+    padding: 7px;
+  }
+}
+
+
+/* Fix account dropdown positioning on mobile */
+@media (max-width: 620px) {
+  .account-wrap {
+    position: relative;
+  }
+
+  .account-dropdown {
+    position: fixed;
+    top: auto;
+    right: 12px;
+    width: min(260px, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    max-height: 75vh;
+    overflow-y: auto;
+    z-index: 9999;
+  }
+
+  .account-info {
+    overflow-wrap: anywhere;
+  }
+
+  .account-dropdown a,
+  .account-dropdown button {
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+}
+
+
+/* Mobile horizontal swipe for learning resource cards */
+@media (max-width: 620px) {
+  .resource-scroll {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 12px;
+    padding: 4px 2px 16px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .resource-scroll .card {
+    flex: 0 0 82%;
+    min-width: 82%;
+    scroll-snap-align: start;
+    margin-bottom: 0;
+  }
+
+  .resource-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .resource-scroll::-webkit-scrollbar-thumb {
+    background: #52677d;
+    border-radius: 10px;
+  }
+}
+
