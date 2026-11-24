@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 const C = createContext(null);
@@ -24,8 +24,12 @@ export default function Site({ children }) {
 
   const accountRef = useRef(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   const en = lang === "en";
+
+  // Hide the regular website layout during CBT exams
+  const isCBTPage = pathname?.startsWith("/cbt");
 
   // Load and monitor the student login session
   useEffect(() => {
@@ -122,97 +126,103 @@ export default function Site({ children }) {
 
   return (
     <C.Provider value={{ lang }}>
-      <header className="header">
-        <Link href="/" className="brand">
-          <b>A</b>
-          <span>
-            ASSAM <i>ASTRA</i>
-            <small>LEARN · PRACTICE · SUCCEED</small>
-          </span>
-        </Link>
+      {!isCBTPage && (
+        <header className="header">
+          <Link href="/" className="brand">
+            <b>A</b>
+            <span>
+              ASSAM <i>ASTRA</i>
+              <small>LEARN · PRACTICE · SUCCEED</small>
+            </span>
+          </Link>
 
-        <nav>
-          {links.map(([name, url]) => (
-            <Link href={url} key={url}>
-              {name}
-            </Link>
-          ))}
-        </nav>
+          <nav>
+            {links.map(([name, url]) => (
+              <Link href={url} key={url}>
+                {name}
+              </Link>
+            ))}
+          </nav>
 
-        <div className="actions">
-          <button onClick={() => setLang(en ? "as" : "en")}>
-            {en ? "অসমীয়া" : "English"}
-          </button>
+          <div className="actions">
+            <button onClick={() => setLang(en ? "as" : "en")}>
+              {en ? "অসমীয়া" : "English"}
+            </button>
 
-          {!user ? (
-            <Link href="/login">
-              {en ? "Login" : "লগইন"}
-            </Link>
-          ) : (
-            <div className="account-wrap" ref={accountRef}>
-              <button
-                className="account-trigger"
-                onClick={() => setMenuOpen((open) => !open)}
-                aria-expanded={menuOpen}
-                aria-haspopup="true"
-              >
-                <span className="account-avatar">
-                  {studentName.charAt(0).toUpperCase()}
-                </span>
+            {!user ? (
+              <Link href="/login">
+                {en ? "Login" : "লগইন"}
+              </Link>
+            ) : (
+              <div className="account-wrap" ref={accountRef}>
+                <button
+                  className="account-trigger"
+                  onClick={() => setMenuOpen((open) => !open)}
+                  aria-expanded={menuOpen}
+                  aria-haspopup="true"
+                >
+                  <span className="account-avatar">
+                    {studentName.charAt(0).toUpperCase()}
+                  </span>
 
-                <span className="account-name">
-                  {studentName}
-                </span>
+                  <span className="account-name">
+                    {studentName}
+                  </span>
 
-                <span>⌄</span>
-              </button>
+                  <span>⌄</span>
+                </button>
 
-              {menuOpen && (
-                <div className="account-dropdown">
-                  <div className="account-info">
-                    <strong>{studentName}</strong>
-                    <small>{user.email}</small>
+                {menuOpen && (
+                  <div className="account-dropdown">
+                    <div className="account-info">
+                      <strong>{studentName}</strong>
+                      <small>{user.email}</small>
+                    </div>
+
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      My Dashboard
+                    </Link>
+
+                    <Link
+                      href="/profile"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Edit Profile
+                    </Link>
+
+                    <Link
+                      href="/change-password"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Change Password
+                    </Link>
+
+                    <button onClick={handleLogout}>
+                      Logout
+                    </button>
                   </div>
+                )}
+              </div>
+            )}
+          </div>
+        </header>
+      )}
 
-                  <Link
-                    href="/dashboard"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    My Dashboard
-                  </Link>
+      <main className={isCBTPage ? "" : "wrap"}>
+        {children}
+      </main>
 
-                  <Link
-                    href="/profile"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Edit Profile
-                  </Link>
-
-                  <Link
-                    href="/change-password"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Change Password
-                  </Link>
-
-                  <button onClick={handleLogout}>
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </header>
-
-      <main className="wrap">{children}</main>
-
-      <footer className="footer">
-        © {new Date().getFullYear()} ASSAM ASTRA ·{" "}
-        {en
-          ? "An independent learning platform for Assam exam aspirants."
-          : "অসমৰ পৰীক্ষাৰ্থীৰ বাবে এক স্বতন্ত্ৰ শিক্ষণ মঞ্চ।"}
-      </footer>
+      {!isCBTPage && (
+        <footer className="footer">
+          © {new Date().getFullYear()} ASSAM ASTRA ·{" "}
+          {en
+            ? "An independent learning platform for Assam exam aspirants."
+            : "অসমৰ পৰীক্ষাৰ্থীৰ বাবে এক স্বতন্ত্ৰ শিক্ষণ মঞ্চ।"}
+        </footer>
+      )}
     </C.Provider>
   );
 }
